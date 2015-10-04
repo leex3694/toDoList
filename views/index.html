@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="toDoList">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <title>To Do List</title>
+</head>
+<body>
+    <div>
+            <div class="toDoGroups" ng-controller="doGroups">
+
+                <!-- **************** Add New Category ************************ -->
+              <div class="jumbotron">
+                  <div class="title">
+                      <h1>To Do List</h1>
+                  </div>
+                        <div class="addNew">
+                            <button class="add" ng-model="addNewTheme" ng-click="getInput()" class="addNewButton">Add New Category</button> <br>
+                            <input type="text" ng-submit="submitNewCategory" placeholder="Create Category" ng-model="receiveCategory" ng-show="showCat" >
+                            <button class="submit" ng-click="acceptNewCategory()" ng-show="showAcceptCatButton">Submit</button>
+
+
+                        </div>
+              </div>
+
+            <!-- ******************The <ul> of new categories ***************** -->
+
+                <div class="ulDiv" ng-show="divShow">
+                    <ul ng-repeat="category in categories" track by $index>
+                       <li class="categoryTitle">
+                           <span class="categoryTitle">{{category.category}}</span>
+
+
+                           <!-- Want to put text input for adding tasks and submit button here
+                           but the value from the text input doesn't go into the next <li> when
+                            it is place here
+                           -->
+
+                       </li>
+                        <button class="add" ng-click="addSubTask()" ng-hide="hideTasker" >Add New Task</button>
+
+                <!-- ************* End category <li> and begin tasks <li> within category *****************  -->
+                            <ul class="taskList">
+                                <li ng-repeat="item in themes " track by $index>
+
+                                    <input type="checkbox" ng-model="item.done" ng-show="checkbox">
+                                    <span class="done-{{item.done}}">{{item.category}}</span>
+
+                                </li>
+                            </ul>
+
+                    </ul>
+
+                    <input type="text" placeholder="Enter New Task" ng-model="newToDo" ng-show="showInput" >
+                    <button class="submit" ng-click="acceptNewTodo()" ng-show="showAcceptButton">Submit</button>
+
+                </div>
+
+
+
+            <!--  ********** The text input and submit for adding new task I'd like to move up to where
+            the category name is    ****************   -->
+
+
+
+
+            </div> <!--The doGroups controller div closer -->
+
+    </div>   <!-- ***** The EVERYTHING div  -->
+
+
+</body>
+</html>

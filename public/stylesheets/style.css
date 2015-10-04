@@ -1,0 +1,80 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #2b81af;
+  font-family: 'Poiret One', cursive;
+}
+
+
+.jumbotron {
+  padding: 25px 10px;
+  text-align: center;
+  z-index: 2;
+  opacity: .9;
+}
+
+.addNewButton {
+  margin: 5px 0 15px 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*   .ulDiv   */
+ul {
+  wdith: auto;
+  height: auto;
+  background-color: #cecece;
+  margin: 5px;
+  padding: 10px;
+  opacity: .95;
+}
+
+ul .taskList{
+  margin: 0 30px;
+  padding: initial;
+}
+
+li .categoryTitle {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  wdith: auto;
+  height: auto;
+  background-color: #f0f0f0;
+  margin: 10px;
+  padding: 5px;
+  list-style: none;
+  opacity: .8;
+  font-size: 16px;
+
+}
+
+
+ .submit{
+  border-radius: 25%;
+  background-color: #e2e2e2;
+  color: #292929;
+}
+
+ .add{
+  border-radius: 25%;
+  background-color: rgba(134, 177, 128, 0.78);
+  color: #292929;
+}
+
+
+.categoryTitle{
+  font-size: 30px;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: #b6b6b6;
+}
