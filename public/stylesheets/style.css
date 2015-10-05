@@ -1,12 +1,13 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../images/background.jpg");
+  background-image: url("../images/003-Brown-Paper.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: #2b81af;
-  font-family: 'Poiret One', cursive;
+  font-family: 'capsuula', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 
 
 .jumbotron {
@@ -14,6 +15,11 @@ body {
   text-align: center;
   z-index: 2;
   opacity: .9;
+  background-color: #cecece
+}
+
+input {
+  margin-top: 10px;
 }
 
 .addNewButton {
@@ -29,7 +35,7 @@ ul {
   wdith: auto;
   height: auto;
   background-color: #cecece;
-  margin: 5px;
+  margin: 10px;
   padding: 10px;
   opacity: .95;
 }
@@ -70,8 +76,9 @@ li {
 }
 
 
-.categoryTitle{
+.categoryTtitle{
   font-size: 30px;
+  margin-right: 15px;
 }
 
 .done-true {

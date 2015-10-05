@@ -21,6 +21,8 @@ module.exports = function(grunt) {
                 src: [
                     "angular/angular.min.js",
                     "angular/angular.min.js.map",
+                    "underscore/underscore-min.js",
+                    "underscore/underscore-min.map",
                     "bootstrap/dist/*/*"
                 ],
                 "dest": "public/vendor/"

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/underscore/underscore-min.js"></script>
     <script src="/javascripts/app.js"></script>
     <title>To Do List</title>
 </head>
@@ -30,33 +30,37 @@
             <!-- ******************The <ul> of new categories ***************** -->
 
                 <div class="ulDiv" ng-show="divShow">
-                    <ul ng-repeat="category in categories" track by $index>
+                    <ul ng-repeat="category in categories track by $index" >
                        <li class="categoryTitle">
-                           <span class="categoryTitle">{{category.category}}</span>
+                           <span class="categoryTtitle">{{category.title}}</span>
 
 
                            <!-- Want to put text input for adding tasks and submit button here
                            but the value from the text input doesn't go into the next <li> when
                             it is place here
                            -->
+                           <input type="text" placeholder="Enter New Task" ng-model="category.newToDo" ng-show="showInput" >
+                           <button class="submit" ng-click="acceptNewTodo(category)" ng-show="showAcceptButton">Submit</button>
 
+                           <button class="clear-btn" ng-click="clearCompleted(category)">Clear completed</button>
                        </li>
-                        <button class="add" ng-click="addSubTask()" ng-hide="hideTasker" >Add New Task</button>
+                        <!--<button class="add" ng-click="addSubTask()" ng-hide="hideTasker" >Add New Task</button>-->
 
                 <!-- ************* End category <li> and begin tasks <li> within category *****************  -->
                             <ul class="taskList">
-                                <li ng-repeat="item in themes " track by $index>
+                                <li ng-repeat="item in category.themes track by $index" >
 
-                                    <input type="checkbox" ng-model="item.done" ng-show="checkbox">
-                                    <span class="done-{{item.done}}">{{item.category}}</span>
+                                    <input type="checkbox" ng-model="category.done[$index]">
+                                    <span class="done-{{category.done[$index]}}">{{item}}</span>
+
 
                                 </li>
                             </ul>
 
                     </ul>
 
-                    <input type="text" placeholder="Enter New Task" ng-model="newToDo" ng-show="showInput" >
-                    <button class="submit" ng-click="acceptNewTodo()" ng-show="showAcceptButton">Submit</button>
+
+
 
                 </div>
 

@@ -15,12 +15,14 @@ var app = angular.module('toDoList', []);
         $scope.categories = [];
 
     /*  Show/hide original values.  Can't get the   value = !value   to work   */
-        $scope.showInput = false;
-        $scope.showAcceptButton = false;
-        $scope.checkbox= false;
+        $scope.showInput = true;
+        $scope.showAcceptButton = true;
+        $scope.checkbox= true;
         $scope.showCat= false;
         $scope.showAcceptCatButton= false;
         $scope.divShow= false;
+        var clearClicked = 0;
+
 
 
     /* When add item is clicked, input and add button SHOW on screen  */
@@ -31,7 +33,12 @@ var app = angular.module('toDoList', []);
 
     /* Click the submit new category */
         $scope.acceptNewCategory = function(){
-            $scope.categories.push({"category": $scope.receiveCategory});
+            var newCat = new Category();
+            newCat.title = $scope.receiveCategory;
+            $scope.categories.push(newCat);
+
+            //var a = $scope.receiveCategory;
+           // $scope.themes.push({item: $scope.receiveCategory});
             $scope.receiveCategory = '';
             $scope.showAcceptCatButton= false;
             $scope.showCat= false;
@@ -44,31 +51,55 @@ var app = angular.module('toDoList', []);
             $scope.showInput = true;
             $scope.showAcceptButton = true;
             $scope.hideTasker = true;
-        };
-
-
-    /* When add new item is clicked, it gets pushed to an array and displays on screen
-     * The text input and submit button are currently not placed where I want them,
-      but putting it next to the add new task button, where I want it doesn't work...so it is where it
-      is for now
-
-      * Also, List items are currently not unique to their category. They should be. However, they are
-       currently all being pulled from the same array.
-     */
-        $scope.acceptNewTodo = function(){
-            //$scope.category.push({"themes": $scope.newToDo});
-            $scope.themes.push(
-                {category: $scope.newToDo, done:false}
-                //{task: $scope.newToDo, done:false}
-                 );
-            $scope.checkbox = true;
-            $scope.newToDo= '';
-            $scope.hideTasker = false;
-            $scope.showInput = false;
-            $scope.showAcceptButton = false;
 
         };
 
+
+
+     /*Pushing input data into array  */
+        $scope.acceptNewTodo = function(category){
+
+
+            category.themes.push(category.newToDo);
+            category.done.push(false);
+            category.newToDo = "";
+
+
+        };
+
+
+
+        $scope.clearCompleted = function (category) {
+
+            for (var i = 0; i < category.themes.length; i++) {
+                if (category.done[i]) {
+                    category.themes = deleteTask(category.themes, i);
+
+                    category.done = deleteTask(category.done, i);
+                }
+            }
+        }
+
+
+/*  *******  Delete items from my array  *****/
+    function deleteTask (categoryItems, item){
+        categoryItems.splice(item, 1);
+        return categoryItems;
+    }
+
+
+/*  ********  Creating a new unique category  ******* */
+    function Category(){
+        this.title = "Task";
+        this.themes = [];
+        this.done = [];
+
+        this.checkbox = true;
+        this.newToDo= '';
+        this.hideTasker = false;
+        this.showInput = false;
+        this.showAcceptButton = false;
+    }
 
 
     }]);
