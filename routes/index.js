@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var ToDo = require('../models/ToDoSchema');
+var TaskPost = require('../models/TaskPostSchema');
 var bodyParser = require('body-parser');
 
 
@@ -12,19 +13,23 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, "../views/index.html"))
 });
 
-router.post('/getCategory', function(request, res, next){
+router.post('/postCategory', function(request, res, next){
   var toDo = new ToDo(request.body);
-    //toDo.create(req.body, function(err, post) {
-    //    res.send('ok');
-    //});
   toDo.save(function(err){
       if(err) throw err;
       console.log('Error:', err);
-      console.log(toDo);
       res.send(toDo);
   })
 });
 
-//sagit rae
+
+router.post("/postTheme", function(request, response, next{
+    var taskPost = new TaskPost(request.body);
+    taskPost.save(function(err){
+        if(err) throw err;
+        response.send(taskPost);
+    })
+}));
+
 
 module.exports = router;
