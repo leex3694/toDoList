@@ -20,7 +20,9 @@
                   </div>
                         <div class="addNew">
                             <button class="add" ng-model="addNewTheme" ng-click="getInput()" class="addNewButton">Add New Category</button> <br>
-                            <input type="text" ng-submit="submitNewCategory" placeholder="Create Category" ng-model="receiveCategory" ng-show="showCat" >
+                            <form ng-submit="acceptNewCategory()">
+                                <input type="text" ng-submit="submitNewCategory" placeholder="Create Category" ng-model="receiveCategory" ng-show="showCat" >
+                            </form>
                             <button class="submit" ng-click="acceptNewCategory()" ng-show="showAcceptCatButton">Submit</button>
 
 
@@ -34,12 +36,9 @@
                        <li class="categoryTitle">
                            <span class="categoryTtitle">{{category.title}}</span>
 
-
-                           <!-- Want to put text input for adding tasks and submit button here
-                           but the value from the text input doesn't go into the next <li> when
-                            it is place here
-                           -->
-                           <input type="text" placeholder="Enter New Task" ng-model="category.newToDo" ng-show="showInput" >
+                           <form ng-submit="acceptNewTodo(category)">
+                                <input type="text" placeholder="Enter New Task" ng-model="category.newToDo" ng-show="showInput" >
+                           </form>
                            <button class="submit" ng-click="acceptNewTodo(category)" ng-show="showAcceptButton">Submit</button>
 
                            <button class="clear-btn" ng-click="clearCompleted(category)">Clear completed</button>
@@ -48,7 +47,8 @@
 
                 <!-- ************* End category <li> and begin tasks <li> within category *****************  -->
                             <ul class="taskList">
-                                <li ng-repeat="item in category.themes track by $index" >
+
+                                <li class="listedItems" ng-repeat="item in category.themes track by $index" >
 
                                     <input type="checkbox" ng-model="category.done[$index]">
                                     <span class="done-{{category.done[$index]}}">{{item}}</span>

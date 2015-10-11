@@ -7,7 +7,7 @@ var app = angular.module('toDoList', []);
 
 
 
-    app.controller('doGroups', ['$scope', function($scope) {
+    app.controller('doGroups', ['$scope', '$http', function($scope, $http) {
 
 
     /* ********Declaring empty array to push input items to *****     */
@@ -21,7 +21,7 @@ var app = angular.module('toDoList', []);
         $scope.showCat= false;
         $scope.showAcceptCatButton= false;
         $scope.divShow= false;
-        var clearClicked = 0;
+
 
 
 
@@ -31,20 +31,42 @@ var app = angular.module('toDoList', []);
             $scope.showAcceptCatButton= true;
         };
 
+
     /* Click the submit new category */
         $scope.acceptNewCategory = function(){
-            var newCat = new Category();
-            newCat.title = $scope.receiveCategory;
-            $scope.categories.push(newCat);
+                var newCat = new Category();
+                newCat.title = $scope.receiveCategory;
+                $scope.categories.push(newCat);
+            console.log("this is newCat ____" + newCat);
 
-            //var a = $scope.receiveCategory;
-           // $scope.themes.push({item: $scope.receiveCategory});
-            $scope.receiveCategory = '';
-            $scope.showAcceptCatButton= false;
-            $scope.showCat= false;
-            $scope.divShow= true;
 
-        };
+
+            //This is meant to POST my input for New Categories. However, struggling to get the DATA to be the right format like Json.
+            var lol = newCat.title;
+            console.log("this is newCat.title_____ " + lol);
+            $http({
+                method: 'POST',
+                url: '/getCategory',
+                data: lol
+            }).then(function() {
+                console.log("the http call went through i think")
+            });
+            //}
+
+                console.log(lol);
+
+                //var a = $scope.receiveCategory;
+               // $scope.themes.push({item: $scope.receiveCategory});
+                $scope.receiveCategory = '';
+                $scope.showAcceptCatButton= false;
+                $scope.showCat= false;
+                $scope.divShow= true;
+
+             };
+
+        //for(var i = 0; i < $scope.categories; i++){
+
+
 
     /* Clicking to add new task reveals text box and submit button */
         $scope.addSubTask = function(){
@@ -78,7 +100,7 @@ var app = angular.module('toDoList', []);
                     category.done = deleteTask(category.done, i);
                 }
             }
-        }
+        };
 
 
 /*  *******  Delete items from my array  *****/
