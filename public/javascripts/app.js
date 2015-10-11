@@ -42,18 +42,18 @@ var app = angular.module('toDoList', []);
 
 
             //This is meant to POST my input for New Categories. However, struggling to get the DATA to be the right format like Json.
-            var lol = newCat.title;
-            console.log("this is newCat.title_____ " + lol);
+            var newCatTitle = newCat.title;
+            console.log("this is newCat.title_____ " + newCatTitle);
             $http({
                 method: 'POST',
                 url: '/getCategory',
-                data: lol
+                data: newCatTitle
             }).then(function() {
                 console.log("the http call went through i think")
             });
             //}
 
-                console.log(lol);
+                console.log(newCatTitle);
 
                 //var a = $scope.receiveCategory;
                // $scope.themes.push({item: $scope.receiveCategory});
