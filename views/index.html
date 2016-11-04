@@ -34,7 +34,7 @@
                 <div class="ulDiv" ng-show="divShow">
                     <ul ng-repeat="category in categories track by $index" >
                        <li class="categoryTitle">
-                           <span class="categoryTtitle">{{category.title}}</span>
+                           <span class="categoryTtitle">{{category.category}}</span>
 
                            <form ng-submit="acceptNewTodo(category)">
                                 <input type="text" placeholder="Enter New Task" ng-model="category.newToDo" ng-show="showInput" >
@@ -49,9 +49,10 @@
                             <ul class="taskList">
 
                                 <li class="listedItems" ng-repeat="item in category.themes track by $index" >
+                                    <p ng-model="appendGetCateogries">{{appendGetCateogries}}</p>
 
-                                    <input type="checkbox" ng-model="category.done[$index]">
-                                    <span class="done-{{category.done[$index]}}">{{item}}</span>
+                                    <input type="checkbox" ng-model="item.done">
+                                    <span class="done-{{item.done}}">{{item.name}}</span>
 
 
                                 </li>

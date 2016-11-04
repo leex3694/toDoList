@@ -10,4 +10,4 @@ var taskPostSchema = new Schema({
 
 var taskPost =  mongoose.model("taskPost", taskPostSchema);
 
-module.exports(taskPost);
+module.exports = taskPost;
